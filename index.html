@@ -3,443 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garden Hose 50ft | Leak-Proof Metal interface</title>
+    <title>Printer Support Click-to-Call</title>
     <style>
-        * {
+        /* Base styles */
+        body {
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        body {
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px 0;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 20px;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-        }
-        
-        .product-section {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 40px 0;
-            gap: 30px;
-        }
-        
-        .product-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-        }
-        
-        .product-image img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .product-details {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .product-name {
-            font-size: 32px;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-        
-        .product-price {
-            font-size: 28px;
-            color: #e74c3c;
-            margin-bottom: 20px;
-        }
-        
-        .product-rating {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .stars {
-            color: #f39c12;
-            font-size: 20px;
-            margin-right: 10px;
-        }
-        
-        .review-count {
-            color: #7f8c8d;
-        }
-        
-        .offers-box {
-            background-color: #e8f4fd;
-            border: 1px solid #b3d7ff;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .offers-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #3498db;
-        }
-        
-        .offer-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        
-        .offer-item:before {
-            content: "•";
-            color: #3498db;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background-color: #e74c3c;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 6px;
-            font-size: 18px;
-            font-weight: bold;
-            text-decoration: none;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
-        
-        .cta-button:hover {
-            background-color: #c0392b;
-        }
-        
-        .product-info-box {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin: 40px 0;
-            overflow: hidden;
-        }
-        
-        .info-tabs {
-            display: flex;
-            background-color: #f3f3f3;
-        }
-        
-        .tab {
-            padding: 15px 25px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        .tab.active {
-            background-color: white;
-            border-top: 3px solid #3498db;
-        }
-        
-        .tab-content {
-            padding: 25px;
-        }
-        
-        .tab-pane {
+        /* Hidden popup by default */
+        .popup-container {
             display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
         
-        .tab-pane.active {
+        /* Visible popup */
+        .popup-container.active {
             display: block;
+            animation: slideIn 0.5s forwards;
         }
         
-        .features-list {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 20px;
+        @keyframes slideIn {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
         
-        .feature-item {
-            flex: 1;
-            min-width: 200px;
-            margin-bottom: 20px;
-            padding-right: 20px;
-        }
-        
-        .feature-item h4 {
-            margin-bottom: 8px;
-            color: #2c3e50;
-        }
-        
-        .customer-reviews {
-            margin: 40px 0;
-        }
-        
-        .review-section-title {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-        
-        .review {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .reviewer {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .review-date {
-            color: #7f8c8d;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        
-        .disclaimer-box {
-            background-color: #f9f3e8;
-            border: 1px solid #f5e3c3;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 30px 0;
-            font-size: 14px;
-            color: #7f5b26;
-        }
-        
-        footer {
-            background-color: #2c3e50;
+        /* Header styling */
+        .popup-header {
+            background: #0066cc;
             color: white;
-            padding: 40px 0;
-        }
-        
-        .footer-content {
+            padding: 15px;
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
+            align-items: center;
         }
         
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 20px;
+        .popup-title {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
         }
         
-        .footer-title {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #3498db;
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0;
         }
         
-        .contact-info p {
-            margin-bottom: 10px;
-        }
-        
-        .footer-bottom {
+        /* Content styling */
+        .popup-content {
+            padding: 20px;
             text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #34495e;
+        }
+        
+        .support-icon {
+            font-size: 40px;
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+        
+        .popup-message {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .call-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #00cc66;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .call-button:hover {
+            background: #00aa55;
+        }
+        
+        /* Trigger button */
+        .trigger-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 998;
+        }
+        
+        .trigger-button:hover {
+            background: #0055aa;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">Toolasin Store</div>
-                <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Trigger Button -->
+    <button class="trigger-button" id="supportTrigger">
+        <i>🖨️</i>
+    </button>
     
-    <main class="container">
-        <section class="product-section">
-            <div class="product-image">
-                <img src="water1.png" alt="Garden Hose 50ft | Non-Expanding, Lightweight" />
-            </div>
-            
-            <div class="product-details">
-                <h1 class="product-name">Garden Hose 50ft | Non-Expanding, Lightweight</h1>
-                
-                <div class="product-rating">
-                    <div class="stars">★★★★★</div>
-                    <div class="review-count">4.8/5 (237 Reviews)</div>
-                </div>
-                
-                <div class="product-price">$26.99</div>
-                
-                <div class="offers-box">
-                    <h3 class="offers-title">Special Offers</h3>
-                    <div class="offer-item">20% off for new customers with code: NEWHOSE20</div>
-                    <div class="offer-item">Free shipping on orders over $75</div>
-                    <div class="offer-item">Buy 2 get 1 Garden Hose 50ft replacement free</div>
-                    <div class="offer-item">30-day money-back guarantee</div>
-                </div>
-                
-                <a href="#" class="cta-button">Know More</a>
-            </div>
-        </section>
-        
-        <section class="product-info-box">
-            <div class="info-tabs">
-                <div class="tab active">Description</div>
-                <div class="tab">Specifications</div>
-                <div class="tab">How to Use</div>
-            </div>
-            
-            <div class="tab-content">
-                <div class="tab-pane active">
-                    <h3>Lighter and Easier</h3>
-                    <p>This product weighs only 2.97 pounds, which is about 60% lighter than traditional garden hoses. It uses a special braided design with high flexibility, which can easily bypass narrow corners, trees and other obstacles, making watering work easy. The lightweight feature makes it easier for you to carry it to any outdoor scene you want to use, making your maintenance work easier.</p>
-                    
-                    <div class="features-list">
-                        <div class="feature-item">
-                            <h4>No more Leakage</h4>
-                            <p>Aluminum-plated Copper Interface:Both ends of the garden hose are made of aluminum-plated copper metal, which has good pressure resistance and is not easy to damage. We configure three spare high-strength leak-proof washers (for the female end interface) for each product to ensure that the water hose will not leak. The connector design allows two water hoses to be connected together. With a leak-proof interface design, this hose can help you complete gardening work efficiently.</p>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <h4>No-Kinks, Smoother Flow</h4>
-                            <p>This flexible garden hose is made of high-quality PVC pipe and high-density wear-resistant textile material. It will not kink, twist or burst during use. The unique PVC inner tube has high strength and pressure resistance, ensuring that the sturdy water hose can withstand greater water pressure without unexpected water hose bursting. If the hose is accidentally tangled, it is also easy to untie, saying goodbye to those traditional garden hose that are easy to kink.</p>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <h4>Easy to Carry and Store</h4>
-                            <p>Due to the material characteristics, this garden hose is lighter, knot-free and kink-free, making it easy for you to carry, and easy to roll up and store when you want to. This kink-free garden hose comes in a storage box, which is perfect for optimizing storage space and keeping the hose tidy. The box allows you to easily place the hose without taking up too much space, while also protecting the hose from dust and dirt.</p>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <h4>Multiple Scenarios, wide Range of Uses</h4>
-                            <p>This fabric hose is suitable for a variety of situations, including watering the garden, cleaning the house, car and yard, and bathing the pet. At the same time, the High-pressure garden hose has a burst water pressure of 550PSI, and can be used efficiently in most extreme weather conditions such as high temperature and freezing. It is important to have a hose that can adapt to a variety of environments and climates.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="customer-reviews">
-            <h2 class="review-section-title">Customer Reviews</h2>
-            
-            <div class="review">
-                <div class="product-rating">
-                    <div class="stars">★★★★★</div>
-                </div>
-                <h4 class="reviewer">Sarah M.</h4>
-                <div class="review-date">March 15, 2025</div>
-                <p>I just received the hose and hooked it up. cinched up nicely to the spigot. I started the water slowly to get the hose filled up with water and it worked perfectly as expected. it is lightweight and does not appear to kink up. quality seems adequate and for the money appears worth the price.</p>
-            </div>
-            
-            <div class="review">
-                <div class="product-rating">
-                    <div class="stars">★★★★☆</div>
-                </div>
-                <h4 class="reviewer">Michael T.</h4>
-                <div class="review-date">February 28, 2025</div>
-                <p>This hose is a game changer! It’s lightweight but super sturdy, and best of all—no annoying knots or tangles! The aluminum-plated copper connections feel durable and totally leak-proof. It’s flexible, easy to maneuver, and perfect for my garden. If you need a reliable, no-fuss hose, this is the one. Highly recommend!</p>
-            </div>
-            
-            <div class="review">
-                <div class="product-rating">
-                    <div class="stars">★★★★★</div>
-                </div>
-                <h4 class="reviewer">Jessica K.</h4>
-                <div class="review-date">April 2, 2025</div>
-                <p>This hose is excellent. Very long, great quality, easy to store. Not a leak with spicket connection. Price is amazing as well for length and quality- highly recommend!</p>
-            </div>
-        </section>
-        
-        <div class="disclaimer-box">
-            <h4>Refund Policy</h4>
-            <p> Voluntary 30-Day Return Guarantee: You can return many items you have purchased within 30 days following delivery of the item to you. Our Voluntary 30-Day Return Guarantee does not affect your legal right of withdrawal in any way. You can find out more about the exceptions and conditions</p>
+    <!-- Popup Container -->
+    <div class="popup-container" id="supportPopup">
+        <div class="popup-header">
+            <h3 class="popup-title">Printer Support</h3>
+            <button class="close-btn" id="closePopup">×</button>
         </div>
-    </main>
-    
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3 class="footer-title">About Toolasin Store</h3>
-                    <p>We specialize in garden hoses and researching more efficient ways to take care of your yard, so we're able to provide you with the right assortment of products to ensure that you're able to choose the one you prefer.</p>
-                </div>
-                
-                <div class="footer-section contact-info">
-                    <h3 class="footer-title">Contact Us</h3>
-                    <p>Address: 2037 NW 27th Ave, Miami, FL 33142, United States</p>
-                    <p>Phone: (304) 438-9587</p>
-                    <p>Email: support@toolasinstore.com</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3 class="footer-title">Help & Support</h3>
-                    <p>Shipping Information</p>
-                    <p>Returns & Refunds</p>
-                    <p>FAQs</p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Toolasin. All Rights Reserved.</p>
-            </div>
+        <div class="popup-content">
+            <div class="support-icon">🖨️</div>
+            <p class="popup-message">Experiencing printer issues? Our technical support team is ready to help you resolve your printer problems quickly.</p>
+            <a href="tel:18005551234" class="call-button">
+                Call Support Now
+            </a>
         </div>
-    </footer>
-    
+    </div>
+
     <script>
-        // Simple tab functionality
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs
-                document.querySelectorAll('.tab').forEach(t => {
-                    t.classList.remove('active');
-                });
-                
-                // Add active class to clicked tab
-                tab.classList.add('active');
-                
-                // Update tab content (in a real implementation, this would show the correct content)
-                // For this demo, we'll just keep the first tab content visible
+        // Wait for document to load
+        document.addEventListener('DOMContentLoaded', function() {
+            const trigger = document.getElementById('supportTrigger');
+            const popup = document.getElementById('supportPopup');
+            const closeBtn = document.getElementById('closePopup');
+            
+            // Show popup after 5 seconds for first-time visitors
+            if (!localStorage.getItem('popupShown')) {
+                setTimeout(() => {
+                    popup.classList.add('active');
+                    localStorage.setItem('popupShown', 'true');
+                }, 5000);
+            }
+            
+            // Show popup when trigger button is clicked
+            trigger.addEventListener('click', function() {
+                popup.classList.add('active');
+            });
+            
+            // Hide popup when close button is clicked
+            closeBtn.addEventListener('click', function() {
+                popup.classList.remove('active');
+            });
+            
+            // Hide popup when clicking outside of it
+            document.addEventListener('click', function(event) {
+                if (!popup.contains(event.target) && event.target !== trigger) {
+                    popup.classList.remove('active');
+                }
             });
         });
     </script>
